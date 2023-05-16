@@ -1,12 +1,11 @@
 
-train_record_dfには、訓練用メタデータ( train_records.csv )でリンク先は()のCSVファイルが入っており、
-test_record_dfには、テスト用メタデータ( test_records.csv )でリンク先は()のCSVファイルが入っている。
+train_record_dfには、訓練用メタデータ( train_records.csv )でリンク先は(https://s3.ap-northeast-1.amazonaws.com/nishika.assets.private/competitions/39/data/train_records.csv?response-content-disposition=attachment%3B%20filename%3Dtrain_records.csv&AWSAccessKeyId=ASIA3NMWWMCVQCB7RXBC&Signature=sQa6pa9SqoNZ03PHadFuQwLxqoA%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEAcaDmFwLW5vcnRoZWFzdC0xIkcwRQIgNBHCd%2Bfn1q%2FygfKTaZ0fAp6YtdUSLH%2BcnApmubRXjJECIQDb3MZ3WjqAbG%2FWrlA68yjKZpNX7WIxzcBAAva2LJOdHiqCBAgwEAMaDDc4NDY4NDQ0MTc3MSIMSyHE3%2BLHYWlJf7S5Kt8Djlvj9%2FrC2FUrJ%2FmigWkH3lplzJ%2B%2B8b1xSzZPMi4f3%2F8v41AluEDp9%2BEz9hvk%2FXdFCtVjsa2mcOpyWsF1RucWXh8mOKGF37jtS64RRvDrf5hHy7Z%2B9%2BCYuHPx%2F6fsv5jfhAqVWgN0EnfBN5k4mXP1Rilyh0%2FPPAOoBL2oYI7n7W2UwTvWJ%2BpQ48WugsbwUGCansXnjUETgxaEt5zi0BqkoSCnXf83H6n8990ZIfKktxSeBG8ynQoS5E7zIazphigj9tCJasmsY9DPef84rIgoTrgycf74DTGc5ngf%2BkLy25kzBnx4Y45PwEwCIHgRUAeRwT38FxyqU44Kg%2BbW677m1neQupFFjb4h0q9JvY7DKHEa1knvDCjhABuMJM5WNpjvNARtexdEQVfYSQYvVzMBNWrxOp0qEVn8rB9ZkkXOs55ljPkh09FQoqe47sxO6yz31RNvrPExsIPrdBXZZmluKtuN6URcQNePuSC5hGJlo0Dg2uVAgOR2%2FT4TOFUQNzow7BDw%2FUVDe5N%2BjTpqjKTRyK%2B4Yq%2FkQkzryeUqwcYUiBGLXh6gOrkBguXtmn8JkbR4G%2FZ3SlcRpoDhMFTjHSqYDO1oHmbPuOrxvscljv%2B%2F0VPVvEi85Oyewk%2FU0xGPVHUwirqOowY6pQEpUglz2I0BhV9%2BbLFrIwQ4a50%2B5u%2BaDMolSPboubBXIdj1OQeupBQDce%2BKyOe95RQcT%2BMRa4xuwwTQO%2Fcl1RzBrws7OhqxsT3J2N3pUIa%2F0svuD97mjzF3G9N19w4ZiJpRsrERhi05lWO%2Fl61ySo4Umy1o2RQOAxitlbWP852LdQpyqE%2F8MNWrxQk3lG0Zd3kqto3q0%2FGGyuoTMADxMQ1gw8QGosY%3D&Expires=1684269847)のCSVファイルが入っており、
+test_record_dfには、テスト用メタデータ( test_records.csv )でリンク先は(https://s3.ap-northeast-1.amazonaws.com/nishika.assets.private/competitions/39/data/test_records.csv?response-content-disposition=attachment%3B%20filename%3Dtest_records.csv&AWSAccessKeyId=ASIA3NMWWMCVQCB7RXBC&Signature=yibHx3HvgkLSH%2FHgw8mFKRfHX4w%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEAcaDmFwLW5vcnRoZWFzdC0xIkcwRQIgNBHCd%2Bfn1q%2FygfKTaZ0fAp6YtdUSLH%2BcnApmubRXjJECIQDb3MZ3WjqAbG%2FWrlA68yjKZpNX7WIxzcBAAva2LJOdHiqCBAgwEAMaDDc4NDY4NDQ0MTc3MSIMSyHE3%2BLHYWlJf7S5Kt8Djlvj9%2FrC2FUrJ%2FmigWkH3lplzJ%2B%2B8b1xSzZPMi4f3%2F8v41AluEDp9%2BEz9hvk%2FXdFCtVjsa2mcOpyWsF1RucWXh8mOKGF37jtS64RRvDrf5hHy7Z%2B9%2BCYuHPx%2F6fsv5jfhAqVWgN0EnfBN5k4mXP1Rilyh0%2FPPAOoBL2oYI7n7W2UwTvWJ%2BpQ48WugsbwUGCansXnjUETgxaEt5zi0BqkoSCnXf83H6n8990ZIfKktxSeBG8ynQoS5E7zIazphigj9tCJasmsY9DPef84rIgoTrgycf74DTGc5ngf%2BkLy25kzBnx4Y45PwEwCIHgRUAeRwT38FxyqU44Kg%2BbW677m1neQupFFjb4h0q9JvY7DKHEa1knvDCjhABuMJM5WNpjvNARtexdEQVfYSQYvVzMBNWrxOp0qEVn8rB9ZkkXOs55ljPkh09FQoqe47sxO6yz31RNvrPExsIPrdBXZZmluKtuN6URcQNePuSC5hGJlo0Dg2uVAgOR2%2FT4TOFUQNzow7BDw%2FUVDe5N%2BjTpqjKTRyK%2B4Yq%2FkQkzryeUqwcYUiBGLXh6gOrkBguXtmn8JkbR4G%2FZ3SlcRpoDhMFTjHSqYDO1oHmbPuOrxvscljv%2B%2F0VPVvEi85Oyewk%2FU0xGPVHUwirqOowY6pQEpUglz2I0BhV9%2BbLFrIwQ4a50%2B5u%2BaDMolSPboubBXIdj1OQeupBQDce%2BKyOe95RQcT%2BMRa4xuwwTQO%2Fcl1RzBrws7OhqxsT3J2N3pUIa%2F0svuD97mjzF3G9N19w4ZiJpRsrERhi05lWO%2Fl61ySo4Umy1o2RQOAxitlbWP852LdQpyqE%2F8MNWrxQk3lG0Zd3kqto3q0%2FGGyuoTMADxMQ1gw8QGosY%3D&Expires=1684269847)のCSVファイルが入っている。
 PSGが保存されているEDFデータ( edf_data.tar.gz )
 
-途中で使用しているPSGのデータは、このリンク（）のものである。
+途中で使用しているPSGのデータは、このリンク（https://s3.ap-northeast-1.amazonaws.com/nishika.assets.private/competitions/39/data/edf_data.tar.gz?response-content-disposition=attachment%3B%20filename%3Dedf_data.tar.gz&AWSAccessKeyId=ASIA3NMWWMCVQCB7RXBC&Signature=4lXnypITg17GnZYAim2get4WTIA%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEAcaDmFwLW5vcnRoZWFzdC0xIkcwRQIgNBHCd%2Bfn1q%2FygfKTaZ0fAp6YtdUSLH%2BcnApmubRXjJECIQDb3MZ3WjqAbG%2FWrlA68yjKZpNX7WIxzcBAAva2LJOdHiqCBAgwEAMaDDc4NDY4NDQ0MTc3MSIMSyHE3%2BLHYWlJf7S5Kt8Djlvj9%2FrC2FUrJ%2FmigWkH3lplzJ%2B%2B8b1xSzZPMi4f3%2F8v41AluEDp9%2BEz9hvk%2FXdFCtVjsa2mcOpyWsF1RucWXh8mOKGF37jtS64RRvDrf5hHy7Z%2B9%2BCYuHPx%2F6fsv5jfhAqVWgN0EnfBN5k4mXP1Rilyh0%2FPPAOoBL2oYI7n7W2UwTvWJ%2BpQ48WugsbwUGCansXnjUETgxaEt5zi0BqkoSCnXf83H6n8990ZIfKktxSeBG8ynQoS5E7zIazphigj9tCJasmsY9DPef84rIgoTrgycf74DTGc5ngf%2BkLy25kzBnx4Y45PwEwCIHgRUAeRwT38FxyqU44Kg%2BbW677m1neQupFFjb4h0q9JvY7DKHEa1knvDCjhABuMJM5WNpjvNARtexdEQVfYSQYvVzMBNWrxOp0qEVn8rB9ZkkXOs55ljPkh09FQoqe47sxO6yz31RNvrPExsIPrdBXZZmluKtuN6URcQNePuSC5hGJlo0Dg2uVAgOR2%2FT4TOFUQNzow7BDw%2FUVDe5N%2BjTpqjKTRyK%2B4Yq%2FkQkzryeUqwcYUiBGLXh6gOrkBguXtmn8JkbR4G%2FZ3SlcRpoDhMFTjHSqYDO1oHmbPuOrxvscljv%2B%2F0VPVvEi85Oyewk%2FU0xGPVHUwirqOowY6pQEpUglz2I0BhV9%2BbLFrIwQ4a50%2B5u%2BaDMolSPboubBXIdj1OQeupBQDce%2BKyOe95RQcT%2BMRa4xuwwTQO%2Fcl1RzBrws7OhqxsT3J2N3pUIa%2F0svuD97mjzF3G9N19w4ZiJpRsrERhi05lWO%2Fl61ySo4Umy1o2RQOAxitlbWP852LdQpyqE%2F8MNWrxQk3lG0Zd3kqto3q0%2FGGyuoTMADxMQ1gw8QGosY%3D&Expires=1684269847）のものである。
 
 これらのデータから下記の条件で特長量を生成したい。
-
 
 生成する際は、リンク先（https://paperswithcode.com/paper/do-not-sleep-on-linear-models-simple-and）を確認し、詳細な定義を学習してから行うこと
 脳波の周波数スペクトル。これは、脳波の周波数成分の強度をグラフで表したものであり、睡眠の段階を区別するのに役立つ。
@@ -32,7 +31,6 @@ https://github.com/emadeldeen24/AttnSleepを再学習させ推論結果を特徴
 
 それらのデータは下記のプログラムに追加する場合どのようなPythonのコードになるか教えてください
 
-
 import datetime
 from pathlib import Path
 from typing import Dict, List
@@ -48,10 +46,11 @@ import joblib
 import plotly.graph_objects as go
 
 OUTPUT_NAME = "submit_rf_v1"
-MODEL_DIR = Path("./output/pickle/"+OUTPUT_NAME+"_model.pkl")
 OUTPUT_DIR = Path("./output/"+OUTPUT_NAME+"_0.00.csv")
 DATA_DIR = Path("./input/")
 EDF_DIR = DATA_DIR / "edf_data"
+MODEL_DIR = Path("../pickle/"+"Telecommunications_Project-"+OUTPUT_NAME+"_model.pkl")
+
 
 sample_submission_df = pd.read_csv(DATA_DIR/"sample_submission.csv", parse_dates=[1])
 sample_submission_df
@@ -300,8 +299,8 @@ val_df = train_df[train_df["id"].isin(val_ids)]
 model = RandomForestClassifier(n_estimators=100, random_state=42)
 model.fit(trn_df.iloc[:, 3:], trn_df["condition"])
 
-joblib.dump(model, MODEL_DIR)
-model = joblib.load(MODEL_DIR)
+#joblib.dump(model, MODEL_DIR)
+#model = joblib.load(MODEL_DIR)
 
 print("\n==========学習済みモデルを保存しました。==========\n")
 
