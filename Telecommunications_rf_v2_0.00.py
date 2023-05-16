@@ -266,8 +266,8 @@ val_df = train_df[train_df["id"].isin(val_ids)]
 model = RandomForestClassifier(n_estimators=100, random_state=42)
 model.fit(trn_df.iloc[:, 3:], trn_df["condition"])
 
-joblib.dump(model, MODEL_DIR)
-model = joblib.load(MODEL_DIR)
+#joblib.dump(model, MODEL_DIR)
+#model = joblib.load(MODEL_DIR)
 
 print("\n==========学習済みモデルを保存しました。==========\n")
 
