@@ -15,7 +15,7 @@ PSGは睡眠の深さを判定するのに利用され、特に睡眠時呼吸�
 
 また、利用データとしては、脳波をとるのは難しく期間を鑑みても実現性が低いと考えたため、下記のデータを利用します。
 医学研究データリポジトリであるPhysioNetで、オープンデータとして公開されているSleep-EDF Database Expanded（sleep-cassette サブセット）を利用します
-(https://www.physionet.org/content/sleep-edfx/1.0.0/)
+(https://www.physionet.org/content/sleep-edfx/1.0.0/)   
 
 参考
 [1]: PHILIPS,日本人の睡眠満足度は世界最低？！睡眠の質を高めるために今できることは？
