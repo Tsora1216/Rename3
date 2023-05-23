@@ -1,0 +1,3 @@
+pip install -U pip
+pip install nose nose-cov beautifulsoup4 pathlib pandas numpy tqdm scikit-learn mne joblib plotly
+pip install -U nose nose-cov beautifulsoup4 pathlib pandas numpy tqdm scikit-learn mne joblib plotly

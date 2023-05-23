@@ -10,3 +10,6 @@ scikit-learn
 mne
 joblib
 plotly
+
+
+nose nose-cov beautifulsoup4 pathlib pandas numpy tqdm scikit-learn mne joblib plotly
