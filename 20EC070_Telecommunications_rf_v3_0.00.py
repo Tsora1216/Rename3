@@ -80,6 +80,7 @@ LABEL2ID = {
     'Sleep stage 3/4': 3,
     'Sleep stage R': 4
 }
+#線形回帰によるスペクトル解析
 tmax = 30. - 1. / psg_edf.info['sfreq']
 epoch = mne.Epochs(raw=psg_edf, events=events, event_id=LABEL2ID, tmin=0, tmax=tmax, baseline=None, verbose=False, on_missing='ignore')
 
