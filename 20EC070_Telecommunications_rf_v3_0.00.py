@@ -14,7 +14,7 @@ import mne
 import joblib
 import plotly.graph_objects as go
 
-OUTPUT_NAME = "submit_rf_v1"
+OUTPUT_NAME = "submit_rf_v3"
 OUTPUT_DIR = Path("./output/"+OUTPUT_NAME+"_0.00.csv")
 DATA_DIR = Path("./input/")
 EDF_DIR = DATA_DIR / "edf_data"
