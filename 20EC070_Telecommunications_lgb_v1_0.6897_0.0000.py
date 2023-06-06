@@ -14,7 +14,7 @@ import mne
 import joblib
 import plotly.graph_objects as go
 
-OUTPUT_NAME = "submit_rf_v3"
+OUTPUT_NAME = "submit_lgb_v1"
 OUTPUT_DIR = Path("./output/"+OUTPUT_NAME+"_0.00.csv")
 DATA_DIR = Path("./input/")
 EDF_DIR = DATA_DIR / "edf_data"
@@ -266,7 +266,9 @@ val_ids = train_record_df[train_record_df["subject_id"].isin(val_subjects)]["id"
 trn_df = train_df[~train_df["id"].isin(val_ids)]
 val_df = train_df[train_df["id"].isin(val_ids)]
 
-model = RandomForestClassifier(n_estimators=100, random_state=42)
+import lightgbm as lgb
+
+model = lgb.LGBMClassifier(n_estimators=100, random_state=42)
 model.fit(trn_df.iloc[:, 3:], trn_df["condition"])
 
 #joblib.dump(model, MODEL_DIR)
