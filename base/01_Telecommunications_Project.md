@@ -10,10 +10,14 @@
 https://takayasora.com
 ![Alt text](image-1.png)
 
-伊達 大輝(ダテ ヒロキ)
-
 稲木 一歩(イナギ イッポ)
 ![Alt Text](./image/inagi_photo.jpg)
+
+
+伊達 大輝(ダテ ヒロキ)
+![Alt Text](https://contents.oricon.co.jp/photo/img/2000/2318/detail/img660/1498119878266.jpg)
+
+
 
 
 # PSDデータの可視化
