@@ -1,69 +1,52 @@
-# Azure Functions でつくる LINE Bot + OpenAI 社 ChatGPT AI ハンズオン
+# リポジトリ内部使用方法
 
-![ce0949d32c09d9cfe0a33306ed85a0e5](https://i.gyazo.com/ce0949d32c09d9cfe0a33306ed85a0e5.png)
+- 自分の学籍番号を使用して、モデルを作成すること
+  - Git上でconflictが発生するのを防ぐため
 
-このページは Azure Functions でつくる LINE Bot + OpenAI 社 ChatGPT AI ハンズオンのトップページです。
+- ファイル階層構造を変更しないこと
+  - Ipynbを起点にそれぞれのファイルにパスが参照パスで結びついています。
+  - その構造を破壊することですべてのプログラムが動かなくなるのでやめてください。
 
-## 事前準備
+- 一行上の改装にPickleが作成される
+  - 一回実行するごとにPickleが作成されます（200MB以上）
+  - もし嫌な人は、Tutorialだけを使用してください。
+  - (2023/05/18日以降、20EC070以外のファイルから消しました。)
 
-ハンズオン前に事前準備をお願いします👍
+# チーム編成
+高矢 空(タカヤ ソラ)
+https://takayasora.com
+![Alt text](./image/photo_takaya.png)
 
-![image](https://i.gyazo.com/0b45133da885fa0da13a7f1c12156674.png)
+稲木 一歩(イナギ イッポ)
+![Alt Text](./image/inagi_photo.jpg)
 
-→ [事前準備](00-preparation.md)
+伊達 大輝(ダテ ヒロキ)
+![Alt Text](https://contents.oricon.co.jp/photo/img/2000/2318/detail/img660/1498119878266.jpg)
 
-## 講師紹介
+# 実験方法
 
-<img src="https://i.gyazo.com/0116e8a74666ace1a45096ae02b54347.jpg" alt="Image from Gyazo" width="200"/>
+今回の実験では、脳波を用いて睡眠段階の判定を行っていきます。
 
-田中正吾 タナカセイゴ
+皆さんは睡眠に満足していますか？
 
-屋号ワンフットシーバスにてフリーランスエンジニアで活動。Microsoft MVP・IBM Champion。WEBフロントエンドをベースにしながらも、情報とインターフェースが合わさるアプローチという視点でIoTやMixed Realityといった技術も取り入れながら活動しています。ウォンバットが好き。
+世界13カ国を対象にした調査によると、半数近くの人が「睡眠に満足していない」と回答した結果になっています[1]。
+特に日本人の満足度は諸外国の平均よりも低くなっています。
+そのため、日本人は「睡眠に満足していますか？」と聞くと睡眠に満足していない人が多いと言えるのです。
 
-## サポートスタッフご紹介
+さらに、日本人の睡眠障害の有症率は睡眠時無呼吸症候群で3〜22％と報告されており[2]、睡眠になんらかの障害がある人は少なくありません。
 
-![](images/takaya.jpg)
+この課題を解決するために、脳波を用いて睡眠段階の判定を行い、どのような改善をすれば睡眠を深くできるかを突き止めていきます。
+具体的なテーマとしては、睡眠ポリグラフ（polysomnography: PSG）から睡眠の深さ（睡眠段階）を予測することをテーマとします。
 
-高矢 空（タカヤ ソラ）  
-https://takayasora.com/
+PSGは睡眠の深さを判定するのに利用され、特に睡眠時呼吸障害の診断と治療効果の判定に利用されています。睡眠段階の判定は専門の臨床技師が行いますが、技師の教育コストは高く、また判定には大変な労力を必要とするので、検査需要に追いついていないという指摘があります。
+睡眠という身近なテーマではありますが、あまり馴染みのない、分析しがいのあるデータになっていると簡単にデータを見ただけでも分かります。
 
-![](images/takeuchi.jpg)
+また、利用データとしては、脳波をとるのは難しく期間を鑑みても実現性が低いと考えたため、下記のデータを利用します。
+医学研究データリポジトリであるPhysioNetで、オープンデータとして公開されているSleep-EDF Database Expanded（sleep-cassette サブセット）を利用します
+(https://www.physionet.org/content/sleep-edfx/1.0.0/)   
 
-竹内 雅樹 (タケウチ マサキ)  
-https://news.microsoft.com/ja-jp/features/regain-your-voice-with-the-power-of-ai/
+参考
 
-## 当日の流れ
+[1] : PHILIPS,日本人の睡眠満足度は世界最低？！睡眠の質を高めるために今できることは？
+[2] : 土井由利子,日本における睡眠障害の頻度と健康影響,保険医療化学,2012,Vol.61 No.1,p.3-10
 
-MM/DD 曜日　HH:MM-HH:MM
-
-- HH:MM-HH:MM
-  - はじめに
-- HH:MM-HH:MM
-  - 1
-  - 2
-  - 3
-- HH:MM-HH:MM
-  - 1
-  - 2
-  - 3
-- HH:MM-HH:MM
-  - 休憩
-- HH:MM-HH:MM
-  - 1
-  - 2
-  - 3
-- HH:MM-HH:MM
-  - 質疑応答
-  - おわりに
-
-## ハンズオンスタート！
-
-![image](https://i.gyazo.com/9e0eefffd6cf76fc45e70b1ac8a7f838.png)
-
-では、今日のハンズオンをはじめていきましょう。
-
-→ [はじめに](01-introduction.md)
-
-## お疲れ様でした
-
-![image](https://i.gyazo.com/5a6aa1d064fcd403fa67091c7d0e417a.png)
