@@ -5,20 +5,6 @@
 医学研究データリポジトリであるPhysioNetで、オープンデータとして公開されているSleep-EDF Database Expanded（sleep-cassette サブセット）を利用します
 (https://www.physionet.org/content/sleep-edfx/1.0.0/)
 
-# チーム編成
-高矢 空(タカヤ ソラ)
-https://takayasora.com
-![Alt text](image-1.png)
-
-稲木 一歩(イナギ イッポ)
-![Alt Text](./image/inagi_photo.jpg)
-
-
-伊達 大輝(ダテ ヒロキ)
-![Alt Text](https://contents.oricon.co.jp/photo/img/2000/2318/detail/img660/1498119878266.jpg)
-
-
-
 
 # PSDデータの可視化
 
@@ -45,7 +31,7 @@ for file_path in edf_files:
     print(file_path)
 ```
 その結果、下記のように全てのpdfを取得できた
-![Alt text](image.png)
+![Alt text](./image/image01_01.png)
 
 pyedflibはEdfReaderとEdfWriterの2つに分かれています。
 ここではEdfReaderを使用してみる。
@@ -125,7 +111,7 @@ edf = pyedflib.EdfReader(path)
 labels = edf.getSignalLabels()
 print(labels)
 ```
-![Alt text](image-2.png)
+![Alt text](./image/image01_02.png)
 
 ```Python
 print("Duaration:"+str(edf.getFileDuration()))
@@ -133,5 +119,5 @@ print("Freq.:"+str(edf.getSampleFrequencies()))
 print("N-Sample(=Freq x Duaration):"+str(edf.getNSamples()))
 print("Date:"+str(edf.getStartdatetime()))
 ```
-![Alt text](image-3.png)
+![Alt text](./image/image01_03.png)
 
