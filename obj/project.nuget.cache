@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "ysVtFyppGq5d+BH7sbtDJS7//XwFyv67t/IcC/NQKeR+pEKwSI7w6mJQVwfVUZ+rQ+XclrpLVIl/Brwb0mgqQA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\IRSL27\\Documents\\GitHub\\Rename3\\Rename3.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\IRSL27\\.nuget\\packages\\accord\\3.8.0\\accord.3.8.0.nupkg.sha512",
+    "C:\\Users\\IRSL27\\.nuget\\packages\\statistics\\1.0.0.1\\statistics.1.0.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -6,13 +6,13 @@
         <head prefix="og: https://ogp.me/ns# fb: https://ogp.me/ns/fb# article: https://ogp.me/ns/article#"></head>
         <meta property="og:type" content="article">
         <meta property="og:url" content="01_Telecommunications_Project.html">
-        <meta property="og:image" content="https://i.gyazo.com/800eb533b2b3a652c4e9973a62bb9f97.png">
-        <meta property="og:title" content="[Azure Functions でつくる LINE Bot + OpenAI 社 ChatGPT AI ハンズオン] 実験01">
-        <meta property="og:description" content="Azure Functions でつくる LINE Bot + OpenAI 社 ChatGPT AI ハンズオン">
+        <meta property="og:image" content="https://media.licdn.com/dms/image/D5603AQFyM8BbshApEA/profile-displayphoto-shrink_400_400/0/1681583246561?e=1694044800&v=beta&t=mVZdqP81YCEF667453y73CpErF8k83QWDCTpz50vIkI">
+        <meta property="og:title" content="[脳波を用いて睡眠段階の判定] データの取得">
+        <meta property="og:description" content="今回の実験では、脳波を用いて睡眠段階の判定を行っていきます。">
         <meta property="og:locale" content="ja">
-        <title>[Azure Functions でつくる LINE Bot + OpenAI 社 ChatGPT AI ハンズオン] 実験01</title>
+        <title>[脳波を用いて睡眠段階の判定] データの取得</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="description" content="Azure Functions でつくる LINE Bot + OpenAI 社 ChatGPT AI ハンズオン">
+        <meta name="description" content="今回の実験では、脳波を用いて睡眠段階の判定を行っていきます。">
         <meta name="generator" content="HonKit 3.7.4">
         
         
@@ -75,6 +75,8 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
+    <link rel="next" href="02_Telecommunications_Project.html" />
+    
     
     <link rel="prev" href="./" />
     
@@ -123,7 +125,33 @@
                 <a href="01_Telecommunications_Project.html">
             
                     
-                    実験01
+                    データの取得
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="02_Telecommunications_Project.html">
+            
+                <a href="02_Telecommunications_Project.html">
+            
+                    
+                    データの可視化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="02_Telecommunications_Project.html">
+            
+                <a href="02_Telecommunications_Project.html">
+            
+                    
+                    データの変換
             
                 </a>
             
@@ -161,7 +189,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >実験01</a>
+        <a href="." >データの取得</a>
     </h1>
 </div>
 
@@ -180,135 +208,6 @@
 <p>また、利用データとしては、脳波をとるのは難しく期間を鑑みても実現性が低いと考えたため、下記のデータを利用します。</p>
 <p>医学研究データリポジトリであるPhysioNetで、オープンデータとして公開されているSleep-EDF Database Expanded（sleep-cassette サブセット）を利用します
 (<a href="https://www.physionet.org/content/sleep-edfx/1.0.0/" target="_blank">https://www.physionet.org/content/sleep-edfx/1.0.0/</a>)</p>
-<h1 id="チーム編成"><a name="チーム編成" class="plugin-anchor" href="#チーム編成"><i class="fa fa-link" aria-hidden="true"></i></a>チーム編成</h1>
-<p>高矢 空(タカヤ ソラ)
-<a href="https://takayasora.com" target="_blank">https://takayasora.com</a>
-<img src="image-1.png" alt="Alt text"></p>
-<p>稲木 一歩(イナギ イッポ)
-<img src="image/inagi_photo.jpg" alt="Alt Text"></p>
-<p>伊達 大輝(ダテ ヒロキ)
-<img src="https://contents.oricon.co.jp/photo/img/2000/2318/detail/img660/1498119878266.jpg" alt="Alt Text"></p>
-<h1 id="psdデータの可視化"><a name="psdデータの可視化" class="plugin-anchor" href="#psdデータの可視化"><i class="fa fa-link" aria-hidden="true"></i></a>PSDデータの可視化</h1>
-<p>まずは、収集してきたPSDデータを検出するプログラムを作成した</p>
-<pre><code class="lang-Python"><span class="hljs-keyword">import</span> os
-
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">find_edf_files</span>(<span class="hljs-params">path</span>):</span>
-    edf_files = []
-    <span class="hljs-keyword">for</span> root, dirs, files <span class="hljs-keyword">in</span> os.walk(path):
-        <span class="hljs-keyword">for</span> file <span class="hljs-keyword">in</span> files:
-            <span class="hljs-keyword">if</span> file.endswith(<span class="hljs-string">&quot;.edf&quot;</span>):
-                edf_files.append(os.path.join(root, file))
-    <span class="hljs-keyword">return</span> edf_files
-
-<span class="hljs-comment"># ディレクトリのパスを指定</span>
-edf_data_path=<span class="hljs-string">&quot;./input/edf_data/&quot;</span>
-
-<span class="hljs-comment"># EDFファイルを検索</span>
-edf_files = find_edf_files(edf_data_path)
-
-<span class="hljs-comment"># 結果の出力</span>
-<span class="hljs-keyword">for</span> file_path <span class="hljs-keyword">in</span> edf_files:
-    <span class="hljs-built_in">print</span>(file_path)
-</code></pre>
-<p>その結果、下記のように全てのpdfを取得できた
-<img src="image.png" alt="Alt text"></p>
-<p>pyedflibはEdfReaderとEdfWriterの2つに分かれています。
-ここではEdfReaderを使用してみる。</p>
-<p>EDFファイルは，生体信号・サンプリング周波数・被験者情報・センサ情報など，様々なデータを格納しているため，データを取得するメソッドもたくさんあるようです。</p>
-<p>EdfReader</p>
-<ul>
-<li>getNSamples(self)<ul>
-<li>データ点数を返します。</li>
-<li>[100 200 100 100]のように各チャンネル毎の値が出力されます。</li>
-</ul>
-</li>
-<li>readAnnotations(self)</li>
-<li>getHeader(self)<ul>
-<li>被験者情報や機器情報を返します。多分あまり使いません。</li>
-</ul>
-</li>
-<li>getSignalHeader(self, chn)<ul>
-<li>引数で指定したチャンネルの情報(センサ名・サンプリング周波数など)を返します。</li>
-</ul>
-</li>
-<li>getSignalHeaders(self)<ul>
-<li>上の関数を全チャンネル同時に。</li>
-</ul>
-</li>
-<li>getTechnician(self)</li>
-<li>getRecordingAdditional(self)</li>
-<li>getPatientName(self)</li>
-<li>getPatientCode(self)</li>
-<li>getPatientAdditional(self)</li>
-<li>getEquipment(self)</li>
-<li>getAdmincode(self)</li>
-<li>getGender(self)</li>
-<li>getFileDuration(self)<ul>
-<li>計測時間を返します。単位は秒です。</li>
-</ul>
-</li>
-<li>getStartdatetime(self)</li>
-<li>getBirthdate(self, string=True)</li>
-<li>getSampleFrequencies(self)</li>
-<li>getSampleFrequency(self,chn)</li>
-<li>getSignalLabels(self)<ul>
-<li>センサ名が全てのチャンネル分返ってきます。</li>
-</ul>
-</li>
-<li>getLabel(self,chn)<ul>
-<li>指定したチャンネルのセンサ名が返ってきます。</li>
-</ul>
-</li>
-<li>getPrefilter(self,chn)<ul>
-<li>指定したチャンネルの前処理に使用したフィルタ情報を返します。</li>
-</ul>
-</li>
-<li>getPhysicalMaximum(self,chn=None)</li>
-<li>getPhysicalMinimum(self,chn=None)</li>
-<li>getDigitalMaximum(self, chn=None)</li>
-<li>getDigitalMinimum(self, chn=None)</li>
-<li>getTransducer(self, chn)<ul>
-<li>指定したチャンネルの計測機器の種類を返します。</li>
-</ul>
-</li>
-<li>getPhysicalDimension(self, chn)<ul>
-<li>指定したチャンネルの計測データの単位を返します。uV, mAなど。</li>
-</ul>
-</li>
-<li>readSignal(self, chn, start=0, n=None)<ul>
-<li>指定したチャンネルの計測データを返します。一番使います。</li>
-</ul>
-</li>
-<li>file_info(self)</li>
-<li>file_info_long(self)</li>
-</ul>
-<p>まずはファイルの読み込み。</p>
-<p>使用するライブラリをインストール</p>
-<pre><code class="lang-Python">!pip install numpy
-!pip install pyedflib
-!pip install matplotlib
-</code></pre>
-<p>それらを用いてプログラムを作成していく</p>
-<pre><code class="lang-Python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-<span class="hljs-keyword">import</span> pyedflib
-<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
-</code></pre>
-<p>では、プログラムに取り掛かります。</p>
-<pre><code class="lang-python">path = <span class="hljs-string">&quot;./input/edf_data/da0649f-PSG.edf&quot;</span>
-
-edf = pyedflib.EdfReader(path)
-</code></pre>
-<p>取得できるラベルを抽出してみました</p>
-<pre><code class="lang-Python">labels = edf.getSignalLabels()
-<span class="hljs-built_in">print</span>(labels)
-</code></pre>
-<p><img src="image-2.png" alt="Alt text"></p>
-<pre><code class="lang-Python"><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Duaration:&quot;</span>+<span class="hljs-built_in">str</span>(edf.getFileDuration()))
-<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Freq.:&quot;</span>+<span class="hljs-built_in">str</span>(edf.getSampleFrequencies()))
-<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;N-Sample(=Freq x Duaration):&quot;</span>+<span class="hljs-built_in">str</span>(edf.getNSamples()))
-<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Date:&quot;</span>+<span class="hljs-built_in">str</span>(edf.getStartdatetime()))
-</code></pre>
-<p><img src="image-3.png" alt="Alt text"></p>
 
                                 
                                 </section>
@@ -336,10 +235,14 @@ edf = pyedflib.EdfReader(path)
 
             
                 
-                <a href="./" class="navigation navigation-prev navigation-unique" aria-label="Previous page: README">
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: README">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
+                
+                <a href="02_Telecommunications_Project.html" class="navigation navigation-next " aria-label="Next page: データの可視化">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -348,7 +251,7 @@ edf = pyedflib.EdfReader(path)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"実験01","level":"1.2","depth":1,"previous":{"title":"README","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","hide-published-with","copy-code-button","intopic-toc","back-to-top-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"intopic-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","mode":"nested","maxDepth":6,"isCollapsed":true,"isScrollspyActive":true,"visible":true,"label":"In this article"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Azure Functions でつくる LINE Bot + OpenAI 社 ChatGPT AI ハンズオン","language":"ja","gitbook":"*","description":"Azure Functions でつくる LINE Bot + OpenAI 社 ChatGPT AI ハンズオン"},"file":{"path":"01_Telecommunications_Project.md","mtime":"2023-06-13T06:33:56.938Z","type":"markdown"},"gitbook":{"version":"3.7.4","time":"2023-06-13T06:34:34.616Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"データの取得","level":"1.2","depth":1,"next":{"title":"データの可視化","level":"1.3","depth":1,"path":"02_Telecommunications_Project.md","ref":"02_Telecommunications_Project.md","articles":[]},"previous":{"title":"README","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","hide-published-with","copy-code-button","intopic-toc","back-to-top-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"intopic-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","mode":"nested","maxDepth":6,"isCollapsed":true,"isScrollspyActive":true,"visible":true,"label":"In this article"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"脳波を用いて睡眠段階の判定","language":"ja","gitbook":"*","description":"今回の実験では、脳波を用いて睡眠段階の判定を行っていきます。"},"file":{"path":"01_Telecommunications_Project.md","mtime":"2023-07-04T05:16:46.119Z","type":"markdown"},"gitbook":{"version":"3.7.4","time":"2023-07-04T05:17:29.229Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
