@@ -5,12 +5,12 @@
         <meta charset="UTF-8">
         <head prefix="og: https://ogp.me/ns# fb: https://ogp.me/ns/fb# article: https://ogp.me/ns/article#"></head>
         <meta property="og:type" content="article">
-        <meta property="og:url" content="01_DataGet.html">
+        <meta property="og:url" content="03_DataVisualization.html">
         <meta property="og:image" content="https://media.licdn.com/dms/image/D5603AQFyM8BbshApEA/profile-displayphoto-shrink_400_400/0/1681583246561?e=1694044800&v=beta&t=mVZdqP81YCEF667453y73CpErF8k83QWDCTpz50vIkI">
-        <meta property="og:title" content="[脳波を用いて睡眠段階の判定] データの取得">
+        <meta property="og:title" content="[脳波を用いて睡眠段階の判定] データの可視化">
         <meta property="og:description" content="今回の実験では、脳波を用いて睡眠段階の判定を行っていきます。">
         <meta property="og:locale" content="ja">
-        <title>[脳波を用いて睡眠段階の判定] データの取得</title>
+        <title>[脳波を用いて睡眠段階の判定] データの可視化</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="今回の実験では、脳波を用いて睡眠段階の判定を行っていきます。">
         <meta name="generator" content="HonKit 3.7.4">
@@ -75,10 +75,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="02_DataExploring.html" />
+    <link rel="next" href="04_DataConversion.html" />
     
     
-    <link rel="prev" href="./" />
+    <link rel="prev" href="02_DataExploring.html" />
     
 
     </head>
@@ -120,7 +120,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2" data-path="01_DataGet.html">
+        <li class="chapter " data-level="1.2" data-path="01_DataGet.html">
             
                 <a href="01_DataGet.html">
             
@@ -146,7 +146,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4" data-path="03_DataVisualization.html">
+        <li class="chapter active" data-level="1.4" data-path="03_DataVisualization.html">
             
                 <a href="03_DataVisualization.html">
             
@@ -202,7 +202,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >データの取得</a>
+        <a href="." >データの可視化</a>
     </h1>
 </div>
 
@@ -217,11 +217,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="psdデータの収集"><a name="psdデータの収集" class="plugin-anchor" href="#psdデータの収集"><i class="fa fa-link" aria-hidden="true"></i></a>PSDデータの収集</h1>
-<p>また、利用データとしては、脳波をとるのは難しく期間を鑑みても実現性が低いと考えたため、下記のデータを利用します。</p>
-<p>医学研究データリポジトリであるPhysioNetで、オープンデータとして公開されているSleep-EDF Database Expanded（sleep-cassette サブセット）を利用します
-(<a href="https://www.physionet.org/content/sleep-edfx/1.0.0/" target="_blank">https://www.physionet.org/content/sleep-edfx/1.0.0/</a>)</p>
-
+                                
                                 
                                 </section>
                             
@@ -248,12 +244,12 @@
 
             
                 
-                <a href="./" class="navigation navigation-prev " aria-label="Previous page: README">
+                <a href="02_DataExploring.html" class="navigation navigation-prev " aria-label="Previous page: データの調査">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="02_DataExploring.html" class="navigation navigation-next " aria-label="Next page: データの調査">
+                <a href="04_DataConversion.html" class="navigation navigation-next " aria-label="Next page: データの変換">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -264,7 +260,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"データの取得","level":"1.2","depth":1,"next":{"title":"データの調査","level":"1.3","depth":1,"path":"02_DataExploring.md","ref":"02_DataExploring.md","articles":[]},"previous":{"title":"README","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","hide-published-with","copy-code-button","intopic-toc","back-to-top-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"intopic-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","mode":"nested","maxDepth":6,"isCollapsed":true,"isScrollspyActive":true,"visible":true,"label":"In this article"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"脳波を用いて睡眠段階の判定","language":"ja","gitbook":"*","description":"今回の実験では、脳波を用いて睡眠段階の判定を行っていきます。"},"file":{"path":"01_DataGet.md","mtime":"2023-07-04T05:16:46.119Z","type":"markdown"},"gitbook":{"version":"3.7.4","time":"2023-07-04T05:47:08.978Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"データの可視化","level":"1.4","depth":1,"next":{"title":"データの変換","level":"1.5","depth":1,"path":"04_DataConversion.md","ref":"04_DataConversion.md","articles":[]},"previous":{"title":"データの調査","level":"1.3","depth":1,"path":"02_DataExploring.md","ref":"02_DataExploring.md","articles":[]},"dir":"neutral"},"config":{"plugins":["anchors","hide-published-with","copy-code-button","intopic-toc","back-to-top-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"intopic-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","mode":"nested","maxDepth":6,"isCollapsed":true,"isScrollspyActive":true,"visible":true,"label":"In this article"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"脳波を用いて睡眠段階の判定","language":"ja","gitbook":"*","description":"今回の実験では、脳波を用いて睡眠段階の判定を行っていきます。"},"file":{"path":"03_DataVisualization.md","mtime":"2023-07-04T05:41:03.471Z","type":"markdown"},"gitbook":{"version":"3.7.4","time":"2023-07-04T05:47:08.978Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

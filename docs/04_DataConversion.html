@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <head prefix="og: https://ogp.me/ns# fb: https://ogp.me/ns/fb# article: https://ogp.me/ns/article#"></head>
         <meta property="og:type" content="article">
-        <meta property="og:url" content="03_DataConversion.html">
+        <meta property="og:url" content="04_DataConversion.html">
         <meta property="og:image" content="https://media.licdn.com/dms/image/D5603AQFyM8BbshApEA/profile-displayphoto-shrink_400_400/0/1681583246561?e=1694044800&v=beta&t=mVZdqP81YCEF667453y73CpErF8k83QWDCTpz50vIkI">
         <meta property="og:title" content="[脳波を用いて睡眠段階の判定] データの変換">
         <meta property="og:description" content="今回の実験では、脳波を用いて睡眠段階の判定を行っていきます。">
@@ -76,7 +76,7 @@
 
     
     
-    <link rel="prev" href="02_DataVisualization.html" />
+    <link rel="prev" href="03_DataVisualization.html" />
     
 
     </head>
@@ -131,9 +131,22 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3" data-path="02_DataVisualization.html">
+        <li class="chapter " data-level="1.3" data-path="02_DataExploring.html">
             
-                <a href="02_DataVisualization.html">
+                <a href="02_DataExploring.html">
+            
+                    
+                    データの調査
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="03_DataVisualization.html">
+            
+                <a href="03_DataVisualization.html">
             
                     
                     データの可視化
@@ -144,9 +157,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.4" data-path="03_DataConversion.html">
+        <li class="chapter active" data-level="1.5" data-path="04_DataConversion.html">
             
-                <a href="03_DataConversion.html">
+                <a href="04_DataConversion.html">
             
                     
                     データの変換
@@ -202,50 +215,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="データの変換"><a name="データの変換" class="plugin-anchor" href="#データの変換"><i class="fa fa-link" aria-hidden="true"></i></a>データの変換</h1>
-<h2 id="edfファイルをcsvファイルに変換する"><a name="edfファイルをcsvファイルに変換する" class="plugin-anchor" href="#edfファイルをcsvファイルに変換する"><i class="fa fa-link" aria-hidden="true"></i></a>edfファイルをCSVファイルに変換する</h2>
-<p>まず、edfファイルをCSVファイルに変換するために、edf4csv.pyを作成していく。</p>
-<p>下記のプログラムでは、フォルダに含まれるedfデータをtrainデータとtestデータに分けている。
-さらにフォルダ構造を分解していき、edfファイルのメタ情報を取得している</p>
-<pre><code class="lang-Python"><span class="hljs-keyword">import</span> datetime
-<span class="hljs-keyword">from</span> pathlib <span class="hljs-keyword">import</span> Path
-<span class="hljs-keyword">from</span> typing <span class="hljs-keyword">import</span> <span class="hljs-type">Dict</span>, <span class="hljs-type">List</span>
-
-<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
-<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-<span class="hljs-keyword">import</span> warnings
-<span class="hljs-keyword">from</span> tqdm.auto <span class="hljs-keyword">import</span> tqdm
-
-<span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> GroupKFold
-<span class="hljs-keyword">from</span> sklearn.ensemble <span class="hljs-keyword">import</span> RandomForestClassifier
-<span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> accuracy_score, classification_report, f1_score
-
-<span class="hljs-keyword">import</span> mne
-
-DATA_DIR = Path(<span class="hljs-string">&quot;./input/&quot;</span>)
-EDF_DIR = DATA_DIR / <span class="hljs-string">&quot;edf_data&quot;</span>
-
-train_record_df = pd.read_csv(DATA_DIR/<span class="hljs-string">&quot;train_records.csv&quot;</span>)
-test_record_df = pd.read_csv(DATA_DIR/<span class="hljs-string">&quot;test_records.csv&quot;</span>)
-
-<span class="hljs-comment"># パスを設定</span>
-train_record_df[<span class="hljs-string">&quot;hypnogram&quot;</span>] = train_record_df[<span class="hljs-string">&quot;hypnogram&quot;</span>].<span class="hljs-built_in">map</span>(<span class="hljs-keyword">lambda</span> x: <span class="hljs-built_in">str</span>(EDF_DIR/x))
-train_record_df[<span class="hljs-string">&quot;psg&quot;</span>] = train_record_df[<span class="hljs-string">&quot;psg&quot;</span>].<span class="hljs-built_in">map</span>(<span class="hljs-keyword">lambda</span> x: <span class="hljs-built_in">str</span>(EDF_DIR/x))
-test_record_df[<span class="hljs-string">&quot;psg&quot;</span>] = test_record_df[<span class="hljs-string">&quot;psg&quot;</span>].<span class="hljs-built_in">map</span>(<span class="hljs-keyword">lambda</span> x: <span class="hljs-built_in">str</span>(EDF_DIR/x))
-
-row = train_record_df.iloc[<span class="hljs-number">0</span>]
-
-<span class="hljs-comment"># edfファイルの読み込み</span>
-psg_edf = mne.io.read_raw_edf(row[<span class="hljs-string">&quot;psg&quot;</span>], preload=<span class="hljs-literal">False</span>)
-
-<span class="hljs-comment"># 読み込んだデータは、mne.io.edf.edf.RawEDFクラスのインスタンスになります</span>
-<span class="hljs-built_in">type</span>(psg_edf)
-
-<span class="hljs-comment"># infoでメタ情報を表示できます</span>
-psg_edf.info
-</code></pre>
-<p>上記のプログラムから得られた結果は以下の通り</p>
-
+                                
                                 
                                 </section>
                             
@@ -272,7 +242,7 @@ psg_edf.info
 
             
                 
-                <a href="02_DataVisualization.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: データの可視化">
+                <a href="03_DataVisualization.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: データの可視化">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
@@ -284,7 +254,7 @@ psg_edf.info
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"データの変換","level":"1.4","depth":1,"previous":{"title":"データの可視化","level":"1.3","depth":1,"path":"02_DataVisualization.md","ref":"02_DataVisualization.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","hide-published-with","copy-code-button","intopic-toc","back-to-top-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"intopic-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","mode":"nested","maxDepth":6,"isCollapsed":true,"isScrollspyActive":true,"visible":true,"label":"In this article"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"脳波を用いて睡眠段階の判定","language":"ja","gitbook":"*","description":"今回の実験では、脳波を用いて睡眠段階の判定を行っていきます。"},"file":{"path":"03_DataConversion.md","mtime":"2023-07-04T05:26:29.156Z","type":"markdown"},"gitbook":{"version":"3.7.4","time":"2023-07-04T05:30:46.285Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"データの変換","level":"1.5","depth":1,"previous":{"title":"データの可視化","level":"1.4","depth":1,"path":"03_DataVisualization.md","ref":"03_DataVisualization.md","articles":[]},"dir":"neutral"},"config":{"plugins":["anchors","hide-published-with","copy-code-button","intopic-toc","back-to-top-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"intopic-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","mode":"nested","maxDepth":6,"isCollapsed":true,"isScrollspyActive":true,"visible":true,"label":"In this article"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"脳波を用いて睡眠段階の判定","language":"ja","gitbook":"*","description":"今回の実験では、脳波を用いて睡眠段階の判定を行っていきます。"},"file":{"path":"04_DataConversion.md","mtime":"2023-07-04T05:46:32.414Z","type":"markdown"},"gitbook":{"version":"3.7.4","time":"2023-07-04T05:47:08.978Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
