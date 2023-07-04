@@ -1,6 +1,6 @@
 {
-  "title":"Azure Functions でつくる LINE Bot + OpenAI 社 ChatGPT AI ハンズオン",
-  "description":"Azure Functions でつくる LINE Bot + OpenAI 社 ChatGPT AI ハンズオン",
+  "title":"脳波を用いて睡眠段階の判定",
+  "description":"今回の実験では、脳波を用いて睡眠段階の判定を行っていきます。",
   "language":"ja",
   "plugins":[
     "anchors",

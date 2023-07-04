@@ -1,0 +1,5 @@
+C:\Users\IRSL27\Documents\GitHub\Rename3\obj\Debug\net5.0\Rename3.csprojAssemblyReference.cache
+C:\Users\IRSL27\Documents\GitHub\Rename3\obj\Debug\net5.0\Rename3.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\IRSL27\Documents\GitHub\Rename3\obj\Debug\net5.0\Rename3.AssemblyInfoInputs.cache
+C:\Users\IRSL27\Documents\GitHub\Rename3\obj\Debug\net5.0\Rename3.AssemblyInfo.cs
+C:\Users\IRSL27\Documents\GitHub\Rename3\obj\Debug\net5.0\Rename3.csproj.CoreCompileInputs.cache
