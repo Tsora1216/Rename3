@@ -1,0 +1,268 @@
+// See https://aka.ms/new-console-template for more information
+//Console.WriteLine("Hello, World!");
+//　ここからプログラムを入力する
+
+//　ここからプログラムを入力する
+
+//  データファイルを読み込み平均値等を求める
+using System.Diagnostics;
+using System.Reflection.PortableExecutable;
+using System.Runtime.InteropServices;
+
+string filename, openfilename, buf;
+int Ndata, kosu;
+
+
+
+// ファイル名を入力する場合（パス付）;
+// Console.Write("データファイル名を入力して下さい(パス付）= ");
+// filename = Console.ReadLine();　　　　
+// Console.ReadLine() は文字型として読み込む
+
+// 直接ファイル名を代入するときには@を付けて、例えばc:\ehara-data
+// に格納された 100Hz-2KAD.txt というファイルの場合には
+filename = @"C:\Users\inagi\c\MAN02-10KAD.txt"; //これでfilenameに格納
+Console.WriteLine(filename);  //チェック用にファイル名出力　
+                              //Console.WriteLine は出力後改行
+openfilename = filename;
+
+//例えば読み込みデータ数を128個とする
+Ndata = 400;
+//解析時間40ms 400/10000 0.04s 40ms
+//分解能 
+
+//データ数をConsole入力する場合は以下のように行う
+//Console.Write("データ数を入力して下さい = ");   //Console.Writeは改行無し
+//Ndata = int.Parse(Console.ReadLine()); 　　　　  //Console.ReadLine()は文字として
+//読み込むのでInt.Parseで整数型数値に変換
+
+// データ配列等の宣言
+double[] y = new double[Ndata];
+int[] y2 = new int[Ndata];
+int[] y3 = new int[Ndata];
+int[] x2 = new int[Ndata];
+int[] x3 = new int[Ndata];
+// 描画用に整数型の配列も作成しておく
+
+// ファイルを1行読み込むには、System.IO.StreamReader クラスのReadLineメソッドを使用する
+// System.IO.StreamReader クラスをinputfile とする
+// ファイル名（パスも含めて）は openfilename である
+// if文にあるPeekは読み込み文字があるか否かを判定する
+//　次が読み取り可能文字でない場合にはPeekは　-1　を返す
+
+
+System.IO.StreamReader inputfile = new System.IO.StreamReader(openfilename);
+
+kosu = 0;                             // 実際の読み込みデータ数をチェック
+/*
+for (int i = 0; i < 7; i++)
+{
+    buf = inputfile.ReadLine();
+}
+*/
+// for文は整数型iを０からNdata-1まで｛　から　｝までの処理を繰り返す意味
+for (int i = 0; i < Ndata; i++)
+{
+    if (inputfile.Peek() == -1)    //　ファイルの最後であればPeekが-1を返す
+        break;              //  ファイルの最後であれば読み込み終了
+    buf = inputfile.ReadLine();    // 1行分をbufに格納
+    kosu = kosu + 1;
+    y[i] = Convert.ToDouble(buf);     // 配列ｙにdouble型で格納
+    y2[i] = Convert.ToInt32(buf);     // 配列y2にint型で格納
+    x2[i] = i;                        // 配列x2にint型でデータ番号
+}
+
+
+
+Console.WriteLine("{0}", kosu);
+Ndata = kosu;                         // 実際に読み込んだデータ数をNdataに格納
+for (int i = 0; i < Ndata; i++)
+{
+    Console.WriteLine("{0} {1}", x2[i], y2[i]);
+
+}
+
+/*データを取り出す
+double[] y1 = new double[Ndata];
+Array.Copy(y, 6, y1, 0, 190);
+*/
+
+
+
+// 総和を求めsumに,平均を求めaverに格納
+double sum, aver;
+
+sum = 0;
+for (int i = 0; i < Ndata; i++)
+{
+    sum = sum + y[i];
+}
+aver = sum / Ndata;
+Console.WriteLine("総和= {0}  平均値= {1}", sum, aver);
+
+
+
+//  この後の処理を自分で作成すること
+//
+//           平均値０のデータを作成（もとのデータから平均値を引く）
+double[] averzero = new double[Ndata];
+for (int i = 0; i < Ndata; i++)
+{
+    averzero[i] = y[i] - aver;
+}
+
+for (int i = 0; i < Ndata; i++)
+{
+    Console.WriteLine("-平均値{0}", averzero[i]);
+
+}
+
+//　　　　　  平均値０のデータにした後，最大値（絶対値での）を求める
+double amax, aby;
+amax = System.Math.Abs(averzero[0]);
+for (int i = 0; i < Ndata; i++)
+{
+    aby = System.Math.Abs(averzero[i]);
+    if (amax < aby)
+        amax = aby;
+}
+
+Console.WriteLine("最大値{0}", amax);
+
+//double[] Maxline = new double[Ndata];
+//for (int i = 0; i < Ndata; i++)
+//{
+//    if (averzero[i] <= 0)
+//        averzero[i] = -1 * averzero[i];
+//    Maxline[i] = (averzero[i]);
+//}
+//Console.WriteLine("絶対値に変換後");
+//for (int i = 0; i < Ndata; i++)
+//{
+//    Console.WriteLine("{0}", Maxline[i]);
+//}
+//Console.WriteLine("最大値{0}", Maxline.Max());
+
+//           このデータを最大値100(絶対値）のデータに正規化する
+double[] reg = new double[Ndata];
+for (int i = 0; i < Ndata; i++)
+{
+    reg[i] = (averzero[i] / amax) * 100;
+}
+
+Console.WriteLine("\r\n正規化後のデータ");
+for (int i = 0; i < Ndata; i++)
+{
+    Console.WriteLine(reg[i]);
+}
+
+
+/*double[] reg = new double[Ndata];
+for (int i = 0; i < Ndata; i++)
+{
+    reg[i] = (averzero[i]/Maxline.Max())*100;
+}
+Console.WriteLine("正規化後");
+for (int i = 0; i < Ndata; i++)
+{
+    Console.WriteLine(reg[i]);
+}
+
+for (int i = 0; i < Ndata; i++)
+{
+    y[i] = reg[i];
+}
+*/
+
+for (int i = 0; i < Ndata; i++)
+{
+    y[i] = reg[i];
+}
+
+// DFTの計算
+double[] AR = new double[Ndata];
+double[] BI = new double[Ndata];
+double[] AMP = new double[Ndata];
+double[] POW = new double[Ndata];
+double[] LOG = new double[Ndata];
+double pai;
+double sampf = 10000, freq;
+string dftout;
+
+
+
+
+//離散フーリエ変換
+pai = System.Math.PI;
+Console.WriteLine("\n\r番号\t周波数\tDFT実部\tDFT虚部\tDFT振幅\tLOG");
+
+for (int k = 0; k < Ndata; k++)
+{
+    AR[k] = 0.0;
+    BI[k] = 0.0;
+    AMP[k] = 0.0;
+    POW[k] = 0.0;
+    LOG[k] = 0.0;
+
+    for (int i = 0; i < Ndata; i++)
+    {
+        AR[k] = AR[k] + y[i] * System.Math.Cos(2.0 * pai * i * k / Ndata);
+        BI[k] = BI[k] + y[i] * System.Math.Sin(2.0 * pai * i * k / Ndata);
+    }
+
+    AR[k] = AR[k] / (Ndata / 2);
+    BI[k] = BI[k] / (Ndata / 2);
+    AMP[k] = System.Math.Sqrt(AR[k] * AR[k] + BI[k] * BI[k]);
+    POW[k] = AR[k] * AR[k] + BI[k] + BI[k];
+    //対数表示
+    LOG[k] = 10 * Math.Log10(AMP[k] / AMP.Max());
+    freq = k * 1.0 / ((1.0 / sampf) * Ndata);
+    if (k > Ndata / 2)
+        freq = -1.0 * (Ndata - k) * 1.0 / ((1.0 / sampf) * Ndata);
+
+    //LOG[0] = LOG.Min();
+
+    dftout = k.ToString("F1") + " " + freq.ToString("F2") + " " + AR[k].ToString("F3") + " " + BI[k].ToString("F4") + " " + AMP[k].ToString("F5") + " " + LOG[k].ToString("F6");
+}
+
+double minLog = LOG.Min();
+
+for (int k = 0; k < Ndata; k++)
+{
+    AR[k] = 0.0;
+    BI[k] = 0.0;
+    AMP[k] = 0.0;
+    POW[k] = 0.0;
+    LOG[k] = 0.0;
+
+    for (int i = 0; i < Ndata; i++)
+    {
+        AR[k] = AR[k] + y[i] * System.Math.Cos(2.0 * pai * i * k / Ndata);
+        BI[k] = BI[k] + y[i] * System.Math.Sin(2.0 * pai * i * k / Ndata);
+    }
+
+    AR[k] = AR[k] / (Ndata / 2);
+    BI[k] = BI[k] / (Ndata / 2);
+    AMP[k] = System.Math.Sqrt(AR[k] * AR[k] + BI[k] * BI[k]);
+    POW[k] = AR[k] * AR[k] + BI[k] + BI[k];
+    //対数表示
+    LOG[k] = 10 * Math.Log10(AMP[k] / AMP.Max());
+    freq = k * 1.0 / ((1.0 / sampf) * Ndata);
+    if (k > Ndata / 2)
+        freq = -1.0 * (Ndata - k) * 1.0 / ((1.0 / sampf) * Ndata);
+
+    if (k == 0)
+    {
+        dftout = k.ToString("F1") + "\t" + freq.ToString("F2") + "\t" + AR[k].ToString("F3") + "\t" + BI[k].ToString("F4") + "\t" + AMP[k].ToString("F5") + "\t" + minLog.ToString("F6");
+
+    }
+    else
+    {
+        dftout = k.ToString("F1") + "\t" + freq.ToString("F2") + "\t" + AR[k].ToString("F3") + "\t" + BI[k].ToString("F4") + "\t" + AMP[k].ToString("F5") + "\t" + LOG[k].ToString("F6");
+    }
+    if (k == 200)
+    {
+        break;
+    }
+    Console.WriteLine(dftout);
+}
